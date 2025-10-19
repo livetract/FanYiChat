@@ -1,6 +1,8 @@
-using FanYi.UI.Models;
+using QiaYue.UI.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace FanYi.UI.Services;
+namespace QiaYue.UI.Services;
 
 public interface ITranslateService
 {

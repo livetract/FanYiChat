@@ -1,8 +1,8 @@
-﻿using FanYi.UI.ViewModels;
+﻿using QiaYue.UI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
-namespace FanYi.UI.Views
+namespace QiaYue.UI.Views
 {
     public partial class MainWindow : Window
     {

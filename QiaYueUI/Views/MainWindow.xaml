@@ -1,14 +1,13 @@
-﻿<Window x:Class="FanYi.UI.Views.MainWindow"
+﻿<Window x:Class="QiaYue.UI.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FanYi.UI.Views"
-        xmlns:models="clr-namespace:FanYi.UI.Models"
-        xmlns:viewmodels="clr-namespace:FanYi.UI.ViewModels"
-        xmlns:bv="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:models="clr-namespace:QiaYue.UI.Models"
+        xmlns:viewmodels="clr-namespace:QiaYue.UI.ViewModels"
         mc:Ignorable="d"
-        Title="翻译助手百度版" Height="450" Width="800"
+        Title="Huan Le Dou"
+        Height="450" Width="800"
         Background="#F5F7FA"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
@@ -225,7 +224,7 @@
                        Margin="0,10,20,10"/>
 
             <ComboBox Grid.Column="2" 
-                      x:Name="comboBoxFromLanguage" 
+                      x:Name="ComboBoxFromLanguage" 
                       Width="120"
                       Margin="0,10"
                       SelectedValue="{Binding SourceLanguage}"
@@ -241,7 +240,7 @@
             </ComboBox>
 
             <Button Grid.Column="3" 
-                    x:Name="SwapLanguagesBtn" 
+                    x:Name="BtnSwapLanguages" 
                     Width="30" 
                     Height="30"
                     Padding="0"
@@ -253,7 +252,7 @@
             </Button>
 
             <ComboBox Grid.Column="4" 
-                      x:Name="comboBoxToLanguage" 
+                      x:Name="ComboBoxToLanguage" 
                       Width="120"
                       Margin="0,10"
                       SelectedValue="{Binding DestinationLanguage}"
@@ -276,7 +275,7 @@
                 BorderThickness="1" 
                 CornerRadius="6">
             
-            <TextBox x:Name="tbxChatDisplayMessage"
+            <TextBox x:Name="TbxChatDisplayMessage"
                      Margin="3"
                      Text="{Binding ChatDisplayText}"
                      IsReadOnly="True"
@@ -291,7 +290,7 @@
             </Grid.RowDefinitions>
 
             <TextBox Grid.Row="0" 
-                     x:Name="tbxInput" 
+                     x:Name="TbxInput" 
                      MinHeight="80"
                      Margin="0,5"
                      Text="{Binding ChatInputText}" 
@@ -302,9 +301,10 @@
                         HorizontalAlignment="Right"
                         Margin="0,5,0,0">
                 <Button x:Name="ClearButton" 
-                        Content="清空" 
+                        Content="配置Api" 
                         Background="#F0F0F0" 
-                        Foreground="{StaticResource TextColor}">
+                        Foreground="{StaticResource TextColor}"
+                        Command="{Binding CmdOpenConfigApiPageButton}">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                             <Setter Property="Background" Value="#F0F0F0"/>
@@ -317,10 +317,10 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button x:Name="btnTranslate" 
+                <Button x:Name="BtnTranslate" 
                         Content="发送" 
                         Background="{StaticResource AccentColor}"
-                        Command="{Binding CmdSentTranslateMessageButton}" >
+                        Command="{Binding CmdSentTranslateMessageButton}" Cursor="Hand" >
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                             <Setter Property="Background" Value="{StaticResource AccentColor}"/>

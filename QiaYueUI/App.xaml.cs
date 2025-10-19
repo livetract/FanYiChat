@@ -1,20 +1,27 @@
-using FanYi.UI.Views;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QiaYue.UI.Options;
+using QiaYue.UI.Services;
+using QiaYue.UI.Views;
+using System;
+using System.IO;
 using System.Windows;
-using FanYi.UI.Models;
-using FanYi.UI.Options;
 
 
-namespace FanYi.UI
+namespace QiaYue.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
+        // 先扫描一下程序是否有appsettings文件；
         public static IHost? AppHost { get; private set; }
+        public static readonly string _ApplName = "QiaYue";
+        public static readonly string _AppSettingsFileName = "settings.json";
+        public static readonly string _AppSettingsBasePath = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),_ApplName);
+        public static readonly string _AppSettingsFileFullPath = Path.Combine(_AppSettingsBasePath, _AppSettingsFileName);
 
         public App()
         {
@@ -28,12 +35,25 @@ namespace FanYi.UI
 
         private static void ConfigureAppConfigurations(HostBuilderContext host, IConfigurationBuilder builder)
         {
-            //throw new NotImplementedException();
+            CheckFileAndCreate();
             var env = host.HostingEnvironment;
-            builder.AddJsonFile(env.IsDevelopment()
-                    ? "appsettings.{env.EnvironmentName}.json"
-                    : "appsettings.json",
-                true, true);
+            builder.SetBasePath(_AppSettingsBasePath)
+                .AddJsonFile(_AppSettingsFileName, true, true)
+                .AddEnvironmentVariables();
+        }
+
+        private static void CheckFileAndCreate()
+        {
+            var fileManager = new ConfigFileManager();
+            if(!fileManager.CheckDirectory(_AppSettingsBasePath))
+            {
+                fileManager.CreateDirectory(_AppSettingsBasePath);
+            }
+            var r3 = fileManager.CheckFile(_AppSettingsFileFullPath);
+            if (!r3)
+            {
+                fileManager.CreateFile(_AppSettingsFileFullPath, new ConfigModel());
+            }
         }
 
         private static void ConfigureAppServices(HostBuilderContext context, IServiceCollection services)
@@ -69,5 +89,4 @@ namespace FanYi.UI
         }
 
     }
-
 }

@@ -1,8 +1,8 @@
-﻿namespace FanYi.UI.Models
+﻿namespace QiaYue.UI.Models
 {
     internal class InputTextItem
     {
-        public string InputPlaceholder { get; set; } = "请在此处输入文本";
+        public string InputPlaceholder { get; set; } = string.Empty;
         public bool IsGotFocus { get; set; } = false;
         public string InputText { get; set; } = string.Empty;
     }
