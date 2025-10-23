@@ -22,12 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="appsettings1.json">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Commons\" />
 	</ItemGroup>
 
